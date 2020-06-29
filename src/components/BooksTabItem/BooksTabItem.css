@@ -1,0 +1,21 @@
+.BooksFilters__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33.33%;
+    height: 70px;
+    font-size: 16px;
+    border: solid 1px #7d7d7d;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+.BooksFilters__item:hover {
+    background-color: #eee;
+}
+.BooksFilters__item.BooksFilters__item--active {
+    border-bottom: none;
+}
+.BooksFilters__item:hover.BooksFilters__item--active {
+    background-color: transparent;
+}
