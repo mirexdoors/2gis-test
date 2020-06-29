@@ -4,10 +4,6 @@ import BooksTabItem
 import './BooksTabs.css';
 
 class BooksTabs extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const filterItems = [
       {id: 1, title: 'To read'},
@@ -24,7 +20,6 @@ class BooksTabs extends Component {
               />
           )}
         </div>
-
     );
   }
 }

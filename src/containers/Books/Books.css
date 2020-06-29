@@ -1,5 +1,6 @@
 .Books__wrapper {
     display: flex;
     flex-direction: column;
+    border: solid 1px #7d7d7d;
     width: 100%;
 }
