@@ -1,7 +1,7 @@
 import React from "react";
 import './BookItem.css';
 
-const BookItem = ({item,}) => {
+const BookItem = ({item}) => {
   return (
       <div className="bookItem">
         <div
@@ -10,7 +10,7 @@ const BookItem = ({item,}) => {
           <div className="bookItem__name">
             {item.title}
           </div>
-          <button className="bookItem__btn"><span className="bookItem__btnText">start  reading</span> &rarr;
+          <button value={item.id} name="change-status" className="bookItem__btn"><span className="bookItem__btnText">start  reading</span> &rarr;
             </button>
         </div>
         <div className="bookItem__description">

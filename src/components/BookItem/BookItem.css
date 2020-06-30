@@ -1,0 +1,40 @@
+.bookItem {
+    border-bottom: solid 1px #7d7d7d;
+    padding: 20px;
+}
+.bookItem__nameWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.bookItem__name {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.bookItem__btn {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+.bookItem__btnText {
+    text-decoration-line: underline;
+}
+.bookItem__description {
+    padding: 10px 0;
+}
+.bookItem__tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.bookItem__tag {
+    margin-right: 8px;
+    padding: 5px;
+    background-color: #ddd;
+    cursor: pointer;
+}
+
