@@ -1,7 +1,12 @@
 import React from "react";
 import './BookItem.css';
 
-const BookItem = ({item}) => {
+const BookItem = ({item, onChangeStatus}) => {
+
+  const changeStatus = (e) => {
+    if (e.currentTarget.value)
+      onChangeStatus(e.currentTarget.value);
+  };
   return (
       <div className="bookItem">
         <div
@@ -10,8 +15,14 @@ const BookItem = ({item}) => {
           <div className="bookItem__name">
             {item.title}
           </div>
-          <button value={item.id} name="change-status" className="bookItem__btn"><span className="bookItem__btnText">start  reading</span> &rarr;
-            </button>
+          <button
+              value={item.id}
+              name="change-status"
+              className="bookItem__btn"
+              onClick={changeStatus}
+          >
+            <span className="bookItem__btnText">start reading</span> &rarr;
+          </button>
         </div>
         <div className="bookItem__description">
           {item.description}
@@ -21,7 +32,6 @@ const BookItem = ({item}) => {
               <li className="bookItem__tag">#{tag}</li>
           )}
         </ul>
-
       </div>
   )
 };

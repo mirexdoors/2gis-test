@@ -13,13 +13,21 @@ class BooksList extends Component {
     if (this.props.books && this.props.books.length) {
       return (
           <div className="booksList__wrapper">
-            {this.props.books.map(book => <BookItem item={book} />)}
+            {this.props.books.map(book =>
+                <BookItem
+                    item={book}
+                    onChangeStatus={this.props.onChangeStatus}
+                />
+            )}
           </div>
       )
     } else {
-      return ( <div className="booksList__wrapper booksList__wrapper--empty">is empty</div>)
+      return (<div
+          className="booksList__wrapper booksList__wrapper--empty">is
+        empty</div>)
     }
   }
+
 }
 
 export default BooksList;

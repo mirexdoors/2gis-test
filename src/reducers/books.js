@@ -3,6 +3,7 @@ import {reduxActionTypes} from "../constants/books";
 const {
   FETCH_BOOKS,
   FAIL_FETCH_BOOKS,
+  CHANGE_BOOK_STATUS
 } = reduxActionTypes;
 
 const initialState = {
@@ -23,6 +24,8 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload
       };
+    case CHANGE_BOOK_STATUS:
+      return {...state};
     default:
       return state;
   }
