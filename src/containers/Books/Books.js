@@ -13,6 +13,9 @@ import './Books.css';
 class Books extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      tabIndex: 0,
+    };
     this.fetchBooks = this.props.booksActions.fetchBooks.bind(this);
     this.changeBookStatus = this.props.booksActions.changeBookStatus.bind(this);
   }
@@ -24,16 +27,20 @@ class Books extends Component {
   render() {
     if (this.props.books.books) {
       const allBooks = Object.assign({}, this.props.books.books);
+      const bookListComponents = Object.keys(allBooks)
+          .map(status => <BooksList
+              books={allBooks[status].items}
+              status={status}
+              onChangeStatus={(bookId) => this.changeBookStatus(bookId, status)}
+          />
+      );
       return (
           <div className="Books Books__wrapper">
-            <BooksTabs books={allBooks}/>
-            {Object.keys(allBooks).map(status =>
-                <BooksList
-                    books={allBooks[status].items}
-                    status={status}
-                    onChangeStatus={(bookId) => this.changeBookStatus(bookId, status)}
-                />
-            )}
+            <BooksTabs
+                books={allBooks}
+                onTabSelect={(index)=>this.setState({tabIndex: index})}
+            />
+            {[...bookListComponents][this.state.tabIndex]}
           </div>
       );
     }
@@ -41,7 +48,6 @@ class Books extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     books: state,
   };

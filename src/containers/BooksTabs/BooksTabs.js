@@ -13,10 +13,12 @@ class BooksTabs extends Component {
       const books =  Object.assign({}, this.props.books);
       return (
           <div className="BooksFilters BooksFilters__list">
-            {Object.keys(books).map(status =>
+            {Object.keys(books).map((status, index) =>
                 <BooksTabItem
                     title={books[status].title}
                     amount={books[status].items ? books[status].items.length : 0}
+                    index={index}
+                    onTabSelect={this.props.onTabSelect}
                 />
             )}
           </div>
@@ -24,6 +26,5 @@ class BooksTabs extends Component {
     }
   }
 }
-
 
 export default BooksTabs;
