@@ -10,14 +10,16 @@ class BooksTabs extends Component {
 
   render() {
     if (this.props.books) {
-      const books =  Object.assign({}, this.props.books);
+      const books = Object.assign({}, this.props.books);
+      console.log(this.props)
       return (
-          <div className="BooksFilters BooksFilters__list">
+          <div className="booksFilters booksFilters__list">
             {Object.keys(books).map((status, index) =>
                 <BooksTabItem
                     title={books[status].title}
                     amount={books[status].items ? books[status].items.length : 0}
                     index={index}
+                    isActive={index === this.props.currentIndex}
                     onTabSelect={this.props.onTabSelect}
                 />
             )}

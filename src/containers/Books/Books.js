@@ -13,7 +13,7 @@ import './Books.css';
 class Books extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+   this.state = {
       tabIndex: 0,
     };
     this.fetchBooks = this.props.booksActions.fetchBooks.bind(this);
@@ -38,6 +38,7 @@ class Books extends Component {
           <div className="Books Books__wrapper">
             <BooksTabs
                 books={allBooks}
+                currentIndex={Number(this.state.tabIndex)}
                 onTabSelect={(index)=>this.setState({tabIndex: index})}
             />
             {[...bookListComponents][this.state.tabIndex]}

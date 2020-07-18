@@ -32,7 +32,7 @@ export const changeBookStatus = (bookId, currentStatus) => {
 
   if (currentBookIndex > -1) {
     const nextStatus = bookProgressFlowLinks[currentStatus];
-    currentBooksStore[nextStatus].items.push(currentListItems[currentBookIndex])
+    currentBooksStore[nextStatus].items.push(currentListItems[currentBookIndex]);
     currentListItems.splice(currentBookIndex, 1);
   }
 

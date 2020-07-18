@@ -1,14 +1,13 @@
 import React from "react";
 import './BooksTabItem.css';
 
-const BooksTabItem = ({title, amount, index, onTabSelect}) => {
+const BooksTabItem = ({title, amount, index, isActive, onTabSelect}) => {
   const selectTab = (e) => {
-    if (e.currentTarget.value)
-      onTabSelect(e.currentTarget.value);
+   return  e.currentTarget.value ? onTabSelect( e.currentTarget.value) : false;
   };
   return (
       <button
-          className="BooksFilters__item"
+          className={`booksFilters__item ${isActive ? 'booksFilters__item--active': ''}`}
           value={index}
           onClick={selectTab}
       >
