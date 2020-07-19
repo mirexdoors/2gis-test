@@ -13,7 +13,7 @@ import './Books.css';
 class Books extends Component {
   constructor(props) {
     super(props);
-   this.state = {
+    this.state = {
       tabIndex: 0,
     };
     this.fetchBooks = this.props.booksActions.fetchBooks.bind(this);
@@ -29,17 +29,17 @@ class Books extends Component {
       const allBooks = Object.assign({}, this.props.books.books);
       const bookListComponents = Object.keys(allBooks)
           .map(status => <BooksList
-              books={allBooks[status].items}
-              status={status}
-              onChangeStatus={(bookId) => this.changeBookStatus(bookId, status)}
-          />
-      );
+                  books={allBooks[status].items}
+                  status={status}
+                  onChangeStatus={(bookId) => this.changeBookStatus(bookId, status)}
+              />
+          );
       return (
-          <div className="Books Books__wrapper">
+          <div className="books books__wrapper">
             <BooksTabs
                 books={allBooks}
                 currentIndex={Number(this.state.tabIndex)}
-                onTabSelect={(index)=>this.setState({tabIndex: index})}
+                onTabSelect={(index) => this.setState({tabIndex: index})}
             />
             {[...bookListComponents][this.state.tabIndex]}
           </div>

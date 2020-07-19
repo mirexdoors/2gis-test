@@ -4,18 +4,14 @@ import BooksTabItem
 import './BooksTabs.css';
 
 class BooksTabs extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
+   render() {
     if (this.props.books) {
       const books = Object.assign({}, this.props.books);
-      console.log(this.props)
       return (
           <div className="booksFilters booksFilters__list">
             {Object.keys(books).map((status, index) =>
                 <BooksTabItem
+                    key={index}
                     title={books[status].title}
                     amount={books[status].items ? books[status].items.length : 0}
                     index={index}

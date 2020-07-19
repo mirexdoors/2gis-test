@@ -5,17 +5,15 @@ import BookItem from "../../components/BookItem/BookItem";
 import './BooksList.css';
 
 class BooksList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     if (this.props.books && this.props.books.length) {
       return (
           <div className="booksList__wrapper">
             {this.props.books.map(book =>
                 <BookItem
+                    key={book.id}
                     item={book}
+                    status={this.props.status}
                     onChangeStatus={this.props.onChangeStatus}
                 />
             )}
@@ -23,7 +21,7 @@ class BooksList extends Component {
       )
     } else {
       return (<div
-          className="booksList__wrapper booksList__wrapper--empty">is
+          className="booksList__wrapper booksList__wrapper--empty">List is
         empty</div>)
     }
   }

@@ -1,4 +1,11 @@
 .booksList__wrapper {
     border-left: 1px solid #000;
     border-right: 1px solid #000;
+
+}
+.booksList__wrapper.booksList__wrapper--empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
 }

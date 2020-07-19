@@ -5,6 +5,7 @@ const {
   FETCH_BOOKS,
   FAIL_FETCH_BOOKS,
   CHANGE_BOOK_STATUS,
+  SET_BOOK_FILTER,
 } = reduxActionTypes;
 
 export const fetchBooks = () => async dispatch => {
@@ -32,7 +33,9 @@ export const changeBookStatus = (bookId, currentStatus) => {
 
   if (currentBookIndex > -1) {
     const nextStatus = bookProgressFlowLinks[currentStatus];
-    currentBooksStore[nextStatus].items.push(currentListItems[currentBookIndex]);
+    currentBooksStore[nextStatus].items
+        .push(currentListItems[currentBookIndex]);
+
     currentListItems.splice(currentBookIndex, 1);
   }
 
@@ -40,3 +43,12 @@ export const changeBookStatus = (bookId, currentStatus) => {
     dispatch({type: CHANGE_BOOK_STATUS});
   }
 };
+
+export const setBooksFilter = (e) => {
+ if (e.target.value) {
+   console.log(e.target.value)
+ }
+  return (dispatch) => {
+    dispatch({type: SET_BOOK_FILTER});
+  }
+}
