@@ -44,11 +44,17 @@ export const changeBookStatus = (bookId, currentStatus) => {
   }
 };
 
-export const setBooksFilter = (e) => {
- if (e.target.value) {
-   console.log(e.target.value)
- }
-  return (dispatch) => {
-    dispatch({type: SET_BOOK_FILTER});
+export const setBooksFilter = (filterTag) => {
+  const currentBooksStore = configureStore().getState().books.books;
+  for (const statusList in currentBooksStore) {
+    currentBooksStore[statusList].items = currentBooksStore[statusList].items.filter(book => {
+          return book.tags.some(tag => tag === filterTag)
+        });
   }
-}
+  return (dispatch) => {
+    dispatch({
+      type: SET_BOOK_FILTER,
+      payload: filterTag
+    });
+  }
+};

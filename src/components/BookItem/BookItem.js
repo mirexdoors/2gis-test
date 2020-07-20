@@ -47,7 +47,7 @@ class BookItem extends Component {
           <ul className="bookItem__tags">
             {this.props.item.tags.length > 0 && this.props.item.tags.map(tag =>
                 <li key={tag} className="bookItem__tag">
-                  <button onClick={tag => this.props.booksActions.setBooksFilter(tag)} value={tag}
+                  <button onClick={()=> this.setFilter(tag)} value={tag}
                           className="bookItem__tagButton">#{tag}</button>
                 </li>
             )}

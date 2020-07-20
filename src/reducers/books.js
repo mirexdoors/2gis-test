@@ -13,13 +13,14 @@ const initialState = {
     inProgress: {title: 'In progress', items: []},
     done: {title: 'Done', items: []},
   },
+  filters: new Set(),
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_BOOKS:
       state.books.toRead.items = action.payload;
-      return state.books;
+      return {...state};
     case FAIL_FETCH_BOOKS:
       return {
         ...state,
@@ -28,8 +29,9 @@ export default (state = initialState, action) => {
     case CHANGE_BOOK_STATUS:
       return {...state};
     case SET_BOOK_FILTER:
+      state.filters.add(action.payload);
       return {...state};
     default:
-      return state;
+      return {...state};
   }
 }
