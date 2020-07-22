@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 
 import BooksTabs from "../BooksTabs/BooksTabs";
 import BooksList from "../BooksList/BooksList";
-import FilterBlock from "../../components/FilterBlock/FilterBlock";
+import FilterBlock
+  from "../../components/FilterBlock/FilterBlock";
 
 import './Books.css';
 
@@ -27,11 +28,15 @@ class Books extends Component {
 
   render() {
     if (this.props.books.books) {
-
       const allBooks = Object.assign({}, this.props.books.books);
+      let filteredBooks;
+      if (this.props.books.filters.size) {
+        filteredBooks = Object.assign({}, this.props.books.filteredBooks);
+      }
+
       const bookListComponents = Object.keys(allBooks)
           .map(status => <BooksList
-                  books={allBooks[status].items}
+                  books={filteredBooks ? filteredBooks[status].items : allBooks[status].items}
                   status={status}
                   onChangeStatus={(bookId) => this.changeBookStatus(bookId, status)}
               />
@@ -43,7 +48,8 @@ class Books extends Component {
                 currentIndex={Number(this.state.tabIndex)}
                 onTabSelect={(index) => this.setState({tabIndex: index})}
             />
-            {this.props.books.filters.size  ?  <FilterBlock tags={[...this.props.books.filters]} /> : ""}
+            {this.props.books.filters.size ? <FilterBlock
+                tags={[...this.props.books.filters]}/> : ""}
             {[...bookListComponents][this.state.tabIndex]}
           </div>
       );

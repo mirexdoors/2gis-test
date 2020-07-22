@@ -1,4 +1,7 @@
-import {reduxActionTypes, bookProgressFlowLinks} from "../constants/books";
+import {
+  reduxActionTypes,
+  bookProgressFlowLinks
+} from "../constants/books";
 import configureStore from "../store/configure-store";
 
 const {
@@ -25,9 +28,13 @@ export const fetchBooks = () => async dispatch => {
 };
 
 export const changeBookStatus = (bookId, currentStatus) => {
-  const currentBooksStore = configureStore().getState().books.books;
-  const currentListItems = currentBooksStore[currentStatus].items;
+  let currentBooksStore;
+  const isFiltered = configureStore().getState().books.filters.size && true;
 
+  if (!isFiltered) currentBooksStore = configureStore().getState().books.books;
+   else   currentBooksStore = configureStore().getState().books.filteredBooks;
+
+  const currentListItems = currentBooksStore[currentStatus].items;
   const currentBookIndex = currentListItems
       .findIndex(item => item.id === bookId);
 
@@ -46,15 +53,18 @@ export const changeBookStatus = (bookId, currentStatus) => {
 
 export const setBooksFilter = (filterTag) => {
   const currentBooksStore = configureStore().getState().books.books;
+  const filteredBooks = configureStore().getState().books.filteredBooks;
+
   for (const statusList in currentBooksStore) {
-    currentBooksStore[statusList].items = currentBooksStore[statusList].items.filter(book => {
-          return book.tags.some(tag => tag === filterTag)
-        });
+    filteredBooks[statusList].items = currentBooksStore[statusList].items.filter(book => {
+      return book.tags.some(tag => tag === filterTag)
+    });
   }
+
   return (dispatch) => {
     dispatch({
       type: SET_BOOK_FILTER,
-      payload: filterTag
+      payload: {tag: filterTag, filteredBooks}
     });
   }
 };

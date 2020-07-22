@@ -14,6 +14,11 @@ const initialState = {
     done: {title: 'Done', items: []},
   },
   filters: new Set(),
+  filteredBooks: {
+    toRead: {title: 'To read', items: []},
+    inProgress: {title: 'In progress', items: []},
+    done: {title: 'Done', items: []},
+  }
 };
 
 export default (state = initialState, action) => {
@@ -29,7 +34,7 @@ export default (state = initialState, action) => {
     case CHANGE_BOOK_STATUS:
       return {...state};
     case SET_BOOK_FILTER:
-      state.filters.add(action.payload);
+      state.filters.add(action.payload.tag);
       return {...state};
     default:
       return {...state};
