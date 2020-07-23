@@ -4,7 +4,8 @@ const {
   FETCH_BOOKS,
   FAIL_FETCH_BOOKS,
   CHANGE_BOOK_STATUS,
-  SET_BOOK_FILTER
+  SET_BOOK_FILTER,
+  CLEAR_FILTER,
 } = reduxActionTypes;
 
 const initialState = {
@@ -35,6 +36,11 @@ export default (state = initialState, action) => {
       return {...state};
     case SET_BOOK_FILTER:
       state.filters.add(action.payload.tag);
+      return {...state};
+      case CLEAR_FILTER:
+        state.filters = new Set();
+        console.log(action.payload)
+        state.filteredBooks = action.payload;
       return {...state};
     default:
       return {...state};

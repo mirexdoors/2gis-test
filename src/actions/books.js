@@ -9,6 +9,7 @@ const {
   FAIL_FETCH_BOOKS,
   CHANGE_BOOK_STATUS,
   SET_BOOK_FILTER,
+  CLEAR_FILTER
 } = reduxActionTypes;
 
 export const fetchBooks = () => async dispatch => {
@@ -65,6 +66,19 @@ export const setBooksFilter = (filterTag) => {
     dispatch({
       type: SET_BOOK_FILTER,
       payload: {tag: filterTag, filteredBooks}
+    });
+  }
+};
+
+export const clearFilters = () => {
+  const filteredBooks = configureStore().getState().books.filteredBooks;
+  for (const statusList in filteredBooks) {
+    filteredBooks[statusList].items = [];
+  }
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_FILTER,
+      payload: filteredBooks
     });
   }
 };

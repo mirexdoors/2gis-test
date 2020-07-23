@@ -1,0 +1,14 @@
+.filter__wrap {
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    padding: 0 10%;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+.filter__reset {
+    font-size: 1rem;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
